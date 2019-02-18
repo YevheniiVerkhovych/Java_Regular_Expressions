@@ -18,8 +18,7 @@ public class Controller {
 public boolean checkIfInputContinuous() {
 
     view.printMessage(view.MESSAGE_CREATE_NEW_SUBSCRIBER);
-    return (scanner.hasNext() && (scanner.nextLine()).matches(View.MESSAGE_CONFIRM_INPUT_STATEMENT));
-
+    return (scanner.hasNext() && (scanner.next()).matches(View.MESSAGE_CONFIRM_INPUT_STATEMENT));
 }
 
 public void createNewSubscribers () {
@@ -27,11 +26,14 @@ public void createNewSubscribers () {
 
     while (checkIfInputContinuous()) {
 
+        scanner.nextLine();
+
         Notebook_Note note = new Notebook_Note();
 
         Controller_Utility_Methods controllerUtilityMethods = new Controller_Utility_Methods(view, model, note, scanner);
 
         controllerUtilityMethods.inputSubscriberFieldsValues();
+
         model = controllerUtilityMethods.getModel();
     }
 

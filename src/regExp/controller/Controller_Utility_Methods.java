@@ -53,6 +53,7 @@ public class Controller_Utility_Methods implements RegExpContainer {
 
             subscriberGroups.append(group.toString() + " ");
             }
+
         }
 
         note.setSubscriberGroups(subscriberGroups.toString());
@@ -68,6 +69,7 @@ public class Controller_Utility_Methods implements RegExpContainer {
              note.setSubscriberCellPhone_2(inputStringValueWithScanner(View.MESSAGE_SUBSCRIBER_CELL_PHONE_2, RegExpContainer.patternSubscriberCellPhone_2));
 
             } else note.setSubscriberCellPhone_2("");
+
 
         note.setSubscriberEmail(inputStringValueWithScanner(View.MESSAGE_SUBSCRIBER_EMAIL, RegExpContainer.patternSubscriberEmail));
 
@@ -99,8 +101,10 @@ public class Controller_Utility_Methods implements RegExpContainer {
 
         view.printMessage(message);
 
-        while (!(scanner.hasNext() && (res = scanner.nextLine()).matches(regexp))) {
+        while (!(scanner.hasNextLine() && (res = scanner.nextLine()).matches(regexp))) {
+
             view.printMessage(View.MESSAGE_WRONG_DATA);
+
 
        }
 

@@ -3,9 +3,9 @@ import java.util.regex.Pattern;
 
 interface RegExpContainer {
 
-    String patternSubscriberSurname                = "^[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20}([-\\s]{1}[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20})?"; //^[А-ЯҐІЇЄ][а-яґіїє'-\s]{2,20}$
-    String patternSubscriberName                   = "^[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20}([-\\s]{1}[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20})?";
-    String patternSubscriberMiddleName             = "^[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20}([-\\s]{1}[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20})?";
+    String patternSubscriberSurname                = "^[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20}([-|\\s]{1}[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20})?"; //^[А-ЯҐІЇЄ][а-яґіїє'-\s]{2,20}$
+    String patternSubscriberName                   = "^[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20}([-|\\s]{1}[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20})?";
+    String patternSubscriberMiddleName             = "^[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20}([-|\\s]{1}[А-ЯҐІЇЄ]{1}[а-яґіїє']{1,20})?";
     String patternSubscriberNickname               = "[A-Za-z0-9-.]{1,30}";
     String patternSubscriberComments               = ".{0,100}";
 //  String patternSubscriberGroups                 = "";
