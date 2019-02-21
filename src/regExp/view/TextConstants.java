@@ -8,7 +8,8 @@ public interface TextConstants {
     static final String MESSAGE_SUBSCRIBER_SURNAME = "Input your surname ua: ";
     static final String MESSAGE_SUBSCRIBER_NAME = "Input your name ua: ";
     static final String MESSAGE_SUBSCRIBER_MIDDLE_NAME = "Input your middle name ua: ";
-    static final String MESSAGE_SUBSCRIBER_NICKNAME = "Input your nickname en: ";
+    static final String MESSAGE_SUBSCRIBER_LOGIN = "Input your login en: ";
+    static final String MESSAGE_SUBSCRIBER_LOGIN_EXIST = "Sorry, login already exist, input another one en: ";
     static final String MESSAGE_SUBSCRIBER_COMMENTS = "Input comments, if any: ";
     static final String MESSAGE_SUBSCRIBER_GROUPS = "If you want to include subscriber in next the group, input \"" + MESSAGE_CONFIRM_INPUT_STATEMENT + "\", or any key to skip: ";
     static final String MESSAGE_SUBSCRIBER_HOME_PHONE = "Input your home phone number XXX-XXX-XX-XX format: ";

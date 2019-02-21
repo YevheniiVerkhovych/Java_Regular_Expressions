@@ -8,7 +8,7 @@ public class Notebook_Note {
     private  String subscriberName;
     private  String subscriberMiddleName;
     private  String subscriberSurnameAndName;
-    private  String subscriberNickname;
+    private  String subscriberLogin;
     private  String subscriberComments;
     private  String subscriberGroups;
     private  String subscriberHomePhone;
@@ -66,12 +66,12 @@ public class Notebook_Note {
         this.subscriberSurnameAndName = subscriberSurnameAndName;
     }
 
-    public String getSubscriberNickname() {
-        return subscriberNickname;
+    public String getSubscriberLogin() {
+        return subscriberLogin;
     }
 
-    public void setSubscriberNickname(String subscriberNickname) {
-        this.subscriberNickname = subscriberNickname;
+    public void setSubscriberLogin(String subscriberLogin) {
+        this.subscriberLogin = subscriberLogin;
     }
 
     public String getSubscriberComments() {

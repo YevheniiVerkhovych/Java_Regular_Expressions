@@ -1,4 +1,5 @@
 package regExp.controller;
+import regExp.model.LoginAlreadyExistException;
 import regExp.model.Model;
 import regExp.model.Notebook_Note;
 import regExp.view.View;
@@ -10,26 +11,28 @@ import java.util.Scanner;
 
 public class Controller_Utility_Methods implements RegExpContainer {
 
-    private View view;
-    private Model model;
-    private Notebook_Note note;
-    private Scanner scanner;
+ private View view = new View();
+ private Model model;
+ private Scanner scanner;
 
 
-    public Controller_Utility_Methods(View view, Model model, Notebook_Note note, Scanner scanner) {
-
-        this.view = view;
+public Controller_Utility_Methods( Model model, Scanner scanner) {
 
         this.model = model;
-
-        this.note = note;
-
         this.scanner = scanner;
     }
 
-    public void inputSubscriberFieldsValues()  {
 
-//        Date date = new Date();
+public boolean checkIfInputContinuous() {
+
+        view.printMessage(view.MESSAGE_CREATE_NEW_SUBSCRIBER);
+        return (scanner.hasNext() && (scanner.next()).matches(View.MESSAGE_CONFIRM_INPUT_STATEMENT));
+    }
+
+public Model inputSubscriberFieldsValues()  {
+       Notebook_Note note = new Notebook_Note();
+       boolean checkLogin = true;
+
         String currentDate = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
         StringBuilder subscriberGroups = new StringBuilder();
 
@@ -41,7 +44,7 @@ public class Controller_Utility_Methods implements RegExpContainer {
 
         note.setSubscriberSurnameAndName(note.getSubscriberSurname() + " " + note.getSubscriberName().charAt(0) + ".");
 
-        note.setSubscriberNickname(inputStringValueWithScanner(View.MESSAGE_SUBSCRIBER_NICKNAME, RegExpContainer.patternSubscriberNickname));
+        note.setSubscriberLogin(inputStringValueWithScanner(View.MESSAGE_SUBSCRIBER_LOGIN, RegExpContainer.patternSubscriberLogin));
 
         note.setSubscriberComments(inputStringValueWithScanner(View.MESSAGE_SUBSCRIBER_COMMENTS, RegExpContainer.patternSubscriberComments));
 
@@ -90,13 +93,24 @@ public class Controller_Utility_Methods implements RegExpContainer {
         note.setSubscriberDateNoteCreation(inputStringValueWithScanner(View.MESSAGE_SUBSCRIBER_DATE_NOTE_CREATION, RegExpContainer.patternSubscriberDateNoteCreation));
 
         note.setSubscriberDateNoteLastModified(currentDate);
+    do {
 
-        model.addNewSubscriberToArray(note);
+        try {
+            model.addNewSubscriberToArray(note);
+            checkLogin = false;
+        } catch (LoginAlreadyExistException loginExeption) {
 
+            view.printMessage(View.MESSAGE_SUBSCRIBER_LOGIN_EXIST);
+            note.setSubscriberLogin(inputStringValueWithScanner(View.MESSAGE_SUBSCRIBER_LOGIN, RegExpContainer.patternSubscriberLogin));
 
-    }
+        }
+    } while (checkLogin);
 
-        private String inputStringValueWithScanner(String message, String regexp) {
+        return model;
+
+}
+
+private String inputStringValueWithScanner(String message, String regexp) {
         String res;
 
         view.printMessage(message);
@@ -105,15 +119,19 @@ public class Controller_Utility_Methods implements RegExpContainer {
 
             view.printMessage(View.MESSAGE_WRONG_DATA);
 
-
        }
 
         return res;
     }
 
 
-    public Model getModel() {
-        return model;
+public void getAllNotesInString() {
+        for (Notebook_Note subscriber : model.getSubscribersArray()) {
+            view.printMessage(subscriber.getSubscriberID() + " " + subscriber.getSubscriberSurnameAndName() + " " + subscriber.getSubscriberLogin() +
+                    " " + subscriber.getSubscriberComments() + " " + subscriber.getSubscriberGroups() + " " +subscriber.getSubscriberHomePhone() + " " +
+                    subscriber.getSubscriberCellPhone_1() + " " + subscriber.getSubscriberCellPhone_2() + " " + subscriber.getSubscriberEmail() + " " + subscriber.getSubscriberSkype() +
+                    " " + subscriber.getSubscriberAddressFull() + " " + subscriber.getSubscriberDateNoteCreation() + " " + subscriber.getSubscriberDateNoteLastModified());
+        }
     }
 
 }
